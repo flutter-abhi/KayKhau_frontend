@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kay_khau_frontend/controller/AddFood.dart';
+import 'package:kay_khau_frontend/controller/LoginCon.dart';
+import 'package:kay_khau_frontend/controller/SignUpCon.dart';
 import 'package:kay_khau_frontend/controller/getFood.dart';
-import 'package:kay_khau_frontend/login.dart';
 import 'package:provider/provider.dart';
+import 'view/AuthScreen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -15,13 +18,22 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) {
+          return AddFood();
+        }),
+        ChangeNotifierProvider(create: (context) {
           return GetFood();
+        }),
+        ChangeNotifierProvider(create: (context) {
+          return LoginCon();
+        }),
+        ChangeNotifierProvider(create: (context) {
+          return SignUpCon();
         }),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: Login(),
+          body: AuthScreen(),
         ),
       ),
     );
